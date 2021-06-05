@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import Truncator
 
-from apps.core.models.mixins import ViewCountMixin
+from .mixins import ViewCountMixin
 
 
 class Text(ViewCountMixin):

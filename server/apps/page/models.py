@@ -1,10 +1,12 @@
 from django.db import models
 
-from apps.core.models.mixins import ViewCountMixin
+from .managers import PageManager
 
 
-class Page(ViewCountMixin):
+class Page(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
+
+    objects = PageManager()
 
     def __str__(self):
         return self.title
