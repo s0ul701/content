@@ -13,7 +13,7 @@ class Audio(ViewCountMixin):
         verbose_name='Страницы',
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.title} ({self.bitrate} bit/s)'
 
     class Meta:
@@ -32,7 +32,7 @@ class PageAudios(models.Model):
     )
     order = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Audio #{self.order}'
 
     class Meta:

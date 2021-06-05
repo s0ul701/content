@@ -26,4 +26,4 @@ class PageRetrieveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = ('title', 'view_count', 'audios', 'texts', 'videos')
+        fields = ('title', 'audios', 'texts', 'videos')

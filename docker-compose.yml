@@ -11,9 +11,11 @@ services:
       - 8000:8000
     depends_on:
       - db
+      - celery
     env_file:
       - ./.envs/.server
       - ./.envs/.db
+      - ./.envs/.rabbitmq
 
   db:
     image: postgres:13.3-alpine
@@ -26,3 +28,22 @@ services:
       interval: 3s
       timeout: 5s
       retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3.8.16-alpine
+    env_file:
+      - ./.envs/.rabbitmq
+
+  celery:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    command: celery -A config worker -B -l info -Q default,celery
+    volumes:
+      - ./server:/server
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ./.envs/.server
+      - ./.envs/.db
+      - ./.envs/.rabbitmq

@@ -1,6 +1,9 @@
+from typing import NoReturn
+
 from django.db import models
 
 from .managers import PageManager
+from .services import _increment_contents_view_count
 
 
 class Page(models.Model):
@@ -8,7 +11,10 @@ class Page(models.Model):
 
     objects = PageManager()
 
-    def __str__(self):
+    def increment_contents_view_count(self) -> NoReturn:
+        _increment_contents_view_count(self)
+
+    def __str__(self) -> str:
         return self.title
 
     class Meta:
