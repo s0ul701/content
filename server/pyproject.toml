@@ -6,9 +6,10 @@ authors = ["Alexander Shcherbanyuk <@s0ul701>"]
 
 [tool.poetry.dependencies]
 python = "3.9.5"
-Django = "3.0.5"
+Django = "^3.2.4"
 psycopg2-binary = "^2.8.6"
 gunicorn = "^20.1.0"
+django-admin-sortable2 = "^1.0"
 
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "^3.2.1"

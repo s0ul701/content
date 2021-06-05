@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).parents[2]
 WSGI_APPLICATION = 'config.wsgi.application'
 ROOT_URLCONF = 'config.urls'
 SITE_ID = 1
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 ALLOWED_HOSTS = [host for host in os.environ.get('ALLOWED_HOSTS').split(',')]
@@ -20,7 +21,7 @@ DATABASES = {
         'NAME': os.environ.get('POSTGRES_DB'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': '0.0.0.0',
+        'HOST': 'db',
         'PORT': 5432,
     }
 }
@@ -109,3 +110,9 @@ if DEBUG:
     ] + MIDDLEWARE
     INSTALLED_APPS += ['debug_toolbar', 'django_extensions']
     INTERNAL_IPS = ['0.0.0.0', '127.0.0.1', 'localhost']
+
+##################################################################
+# Language settings
+##################################################################
+
+LANGUAGE_CODE = 'ru-ru'

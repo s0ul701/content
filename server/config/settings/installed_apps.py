@@ -6,9 +6,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'adminsortable2',
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'apps.page',
+    'apps.content',
+]
 
 INSTALLED_APPS += LOCAL_APPS
 
