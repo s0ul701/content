@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    command: python manage.py runserver_plus 0.0.0.0:8000
+    volumes:
+      - ./server:/server
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    env_file:
+      - ./.envs/.server
+      - ./.envs/.db
+
+  db:
+    image: postgres:13.3-alpine
+    env_file: 
+      - ./.envs/.db
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER
+      interval: 3s
+      timeout: 5s
+      retries: 10
