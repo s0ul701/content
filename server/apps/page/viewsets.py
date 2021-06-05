@@ -2,6 +2,7 @@ from rest_framework import mixins, pagination, response, viewsets
 
 from .models import Page
 from .serializers import PageListSerializer, PageRetrieveSerializer
+from .tasks import increment_page_contents_view_count_task
 
 
 class PagePagination(pagination.PageNumberPagination):
@@ -40,3 +41,7 @@ class PageViewSet(
 
     def get_serializer_class(self):
         return self.serializers_by_actions_mapping[self.action]
+
+    def retrieve(self, request, pk: str):
+        increment_page_contents_view_count_task.delay(pk)
+        return super().retrieve(request, pk=pk)

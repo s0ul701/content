@@ -14,7 +14,7 @@ class Text(ViewCountMixin):
         verbose_name='Страницы',
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.title} ({Truncator(self.text).chars(50, "...")})'
 
     class Meta:
@@ -33,7 +33,7 @@ class PageTexts(models.Model):
     )
     order = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Text #{self.order}'
 
     class Meta:

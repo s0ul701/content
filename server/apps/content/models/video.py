@@ -21,7 +21,7 @@ class Video(ViewCountMixin):
         verbose_name='Страницы',
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.title}'
 
     class Meta:
@@ -40,7 +40,7 @@ class PageVideos(models.Model):
     )
     order = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Video #{self.order}'
 
     class Meta:

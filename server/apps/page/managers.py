@@ -1,10 +1,11 @@
 from django.db import models
+from django.db.models.query import QuerySet
 
 from apps.content.models import Audio, Text, Video
 
 
 class PageManager(models.Manager):
-    def with_prefetched_contents(self):
+    def with_prefetched_contents(self) -> QuerySet:
         return self.prefetch_related(
             models.Prefetch(
                 'audios',
