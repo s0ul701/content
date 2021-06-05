@@ -7,6 +7,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'adminsortable2',
+    'rest_framework',
 ]
 
 LOCAL_APPS = [

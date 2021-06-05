@@ -1,7 +1,7 @@
 from django.db import models
 
+from .mixins import ViewCountMixin
 from .utils import get_upload_file_path
-from apps.core.models.mixins import ViewCountMixin
 
 
 class Video(ViewCountMixin):

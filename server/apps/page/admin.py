@@ -22,4 +22,3 @@ class VideoInline(SortableInlineAdminMixin, admin.TabularInline):
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     inlines = (AudioInline, TextInline, VideoInline)
-    readonly_fields = ('view_count',)
