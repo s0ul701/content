@@ -1,21 +1,27 @@
-from adminsortable2.admin import SortableInlineAdminMixin
 from django.contrib import admin
 
+from .forms import ContentFormSet
 from .models import Page
 
 
-class AudioInline(SortableInlineAdminMixin, admin.TabularInline):
+class AudioInline(admin.TabularInline):
     model = Page.audios.through
+    formset = ContentFormSet
+    fields = ('order', 'audio')
     extra = 0
 
 
-class TextInline(SortableInlineAdminMixin, admin.TabularInline):
+class TextInline(admin.TabularInline):
     model = Page.texts.through
+    formset = ContentFormSet
+    fields = ('order', 'text')
     extra = 0
 
 
-class VideoInline(SortableInlineAdminMixin, admin.TabularInline):
+class VideoInline(admin.TabularInline):
     model = Page.videos.through
+    formset = ContentFormSet
+    fields = ('order', 'video')
     extra = 0
 
 
