@@ -1,8 +1,9 @@
 from typing import NoReturn
 
 from config.celery import celery_app
-from .services import PageTasksService
+
 from .models import Page
+from .services import PageTasksService
 
 
 @celery_app.task

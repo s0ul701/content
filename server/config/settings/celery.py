@@ -1,6 +1,5 @@
 import os
 
-
 CELERY_BROKER_URL = (
     'amqp://'
     f'{os.environ.get("RABBITMQ_DEFAULT_USER")}:'
