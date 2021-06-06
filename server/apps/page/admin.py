@@ -22,3 +22,4 @@ class VideoInline(SortableInlineAdminMixin, admin.TabularInline):
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     inlines = (AudioInline, TextInline, VideoInline)
+    search_fields = ('title', 'audios__title', 'texts__title', 'videos__title')
