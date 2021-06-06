@@ -1,29 +1,20 @@
-from rest_framework import reverse, serializers
+from rest_framework import serializers
 
-from apps.content.serializers import (
-    AudioSerializer, TextSerializer, VideoSerializer,
-)
 from .models import Page
+from .services import PageSerializersService
 
 
 class PageListSerializer(serializers.Serializer):
     def to_representation(self, page_id: int) -> str:
-        view_name = (
-            f'{self.context["request"]._request.resolver_match.namespace}:'
-            f'{self.context["view"].basename}-detail'
-        )
-        return reverse.reverse(
-            view_name,
-            args=(page_id,),
-            request=self.context['request'],
-        )
+        return PageSerializersService.get_page_url(self, page_id)
 
 
 class PageRetrieveSerializer(serializers.ModelSerializer):
-    audios = AudioSerializer(many=True)
-    texts = TextSerializer(many=True)
-    videos = VideoSerializer(many=True)
+    content = serializers.SerializerMethodField()
+
+    def get_content(self, page: Page):
+        return PageSerializersService.get_formed_content(page)
 
     class Meta:
         model = Page
-        fields = ('title', 'audios', 'texts', 'videos')
+        fields = ('title', 'content')
